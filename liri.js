@@ -1,6 +1,20 @@
-// require("dotenv").config();
-// var spotify = new Spotify(keys.spotify);
-// var client = new Twitter(keys.twitter);
+require("dotenv").config();
+//How do I send it to grab the keys from keys.js will below work?
+var keys = (src="/keys.js");
+
+var spotify = new Spotify(keys.spotify);
+var client = new Twitter(keys.twitter);
+//could I make the below into one user selects instead of types?
+console.log("Type my-tweets , spotify-this-song , movie-this , or do-what-it-says to get started!");
+
+var action = process.argv[2];
+var userInput = process.argv[3];
+
+//what to do if user types in more than two indicies
+for (var i = 4; i < process.argv.length; i++) {
+    userInput += '+' + process.argv[i];
+}
+
 switch (action) {
     case "my-tweets":
         tweets();
