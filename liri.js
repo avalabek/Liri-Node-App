@@ -1,20 +1,20 @@
-require("dotenv").config();
-var spotify = new Spotify(keys.spotify);
-var client = new Twitter(keys.twitter);
+// require("dotenv").config();
+// var spotify = new Spotify(keys.spotify);
+// var client = new Twitter(keys.twitter);
 
-switch  {
-    case 'my-tweets'
-    value:
+// switch  {
+//     case 'my-tweets'
+//     value:
         
-        break;
-case 'spotify-this-song'
+//         break;
+// case 'spotify-this-song'
 
-case 'movie-this'
+// case 'movie-this'
 
-case `do-what-it-says`
-    default:
-        break;
-}
+// case `do-what-it-says`
+//     default:
+//         break;
+// }
 
 //OMDB movies---------------------------------------------------------
 var movieName = process.argv[2];
@@ -25,6 +25,7 @@ var request = require("request");
 request(queryUrl, function (error, response, body) {
 
     if (!error && response.statusCode === 200) {
+        console.log("The movie's title is: " + JSON.parse(body).Title);
         console.log("The movie was released in: " + JSON.parse(body).Year);
         console.log("The movie's language is: " + JSON.parse(body).Language);
         console.log("The movie stars: " + JSON.parse(body).Actors);
