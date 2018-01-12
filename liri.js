@@ -1,6 +1,6 @@
 require("dotenv").config();
 //How do I send it to grab the keys from keys.js will below work?
-var keys = require ("./keys.js");
+var keys = require("./keys.js");
 // //Import the Spotify and Twitter APIs
 var Spotify = require("node-spotify-api");
 var Twitter = require("twitter");
@@ -17,6 +17,7 @@ var userInput = process.argv[3];
 for (var i = 4; i < process.argv.length; i++) {
     userInput += "+" + process.argv[i];
 }
+
 function startLiri() {
     switch (action) {
         case "my-tweets":
@@ -37,12 +38,31 @@ function startLiri() {
     }
 };
 // functions---------------------------------------------------------
-function tweets() {}
+function tweets() {
+    var screenName = {
+        screen_name: "liripen"
+    };
+    client.get("statuses/user_timeline", screenName, function (error, tweets, response) {
+        if (!error) {
+            for (var i = 0; i < tweets.length; i++) {
+                var date = tweets[i].created_at;
+                console.log("@liripen: " + tweets[i].text + " Created at: " + date.substring(0, 19));
+                console.log("+++++++++++++++++++++");
+            }
+        } else {
+            console.log("There has been an error.");
+        }
+    });
+}
+
 
 function music() {
     // var songName = process.argv[3];
-    
-    spotify.search({ type: "track", query: "All the Small Things" }, function (err, data) {
+
+    spotify.search({
+        type: "track",
+        query: "All the Small Things"
+    }, function (err, data) {
         if (err) {
             return console.log("Error occurred: " + err);
         }
@@ -53,7 +73,7 @@ function music() {
 
 function whatItSays() {}
 //OMDB movies---------------------------------------------------------
- 
+
 function movie() {
     //maybe needs to be process.argv[3] ? or userInput variable? do I need a separate 
     // variable here, or just use userInput? how to distinguish from other inputs for
@@ -75,7 +95,7 @@ function movie() {
             console.log("The movie's Rotten Tomatoes score is: " + JSON.parse(body).Metascore);
             console.log("The movie's imdb rating is: " + JSON.parse(body).imdbRating);
             // console.log(JSON.parse(body));//this one gives you all of the object so you can more easily find the part you want
-        }else {
+        } else {
             if (movieName === undefined) {
                 movieName = "Mr.Nobody"
                 console.log("The movie's title is: " + JSON.parse(body).Title);
