@@ -8,7 +8,6 @@ var Twitter = require("twitter");
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 
-console.log("Type my-tweets , spotify-this-song , movie-this , or do-what-it-says to get started!");
 
 var action = process.argv[2];
 var userInput = process.argv[3];
@@ -35,6 +34,9 @@ function startLiri() {
         case "do-what-it-says":
             whatItSays();
             break;
+        default:
+            console.log("Type my-tweets , spotify-this-song , movie-this , or do-what-it-says to get started!");
+
     }
 };
 // functions---------------------------------------------------------
