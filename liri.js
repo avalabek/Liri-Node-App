@@ -59,19 +59,31 @@ function tweets() {
 
 
 function music() {
-    // var songName = process.argv[3];
-
-    spotify.search({
-        type: "track",
-        query: "All the Small Things"
-    }, function (err, data) {
+ var searchTrack = userInput;
+    spotify.search({ type: 'track', query: searchTrack }, function (err, data) {
         if (err) {
-            return console.log("Error occurred: " + err);
+            console.log('Error occurred: ' + err);
+            return;
+        } else {
+            //tried searching for release year! Spotify doesn't return this!
+            console.log("Artist: " + data.tracks.items[0].artists[0].name);
+            console.log("Song: " + data.tracks.items[0].name);
+            console.log("Album: " + data.tracks.items[0].album.name);
+            console.log("Preview Here: " + data.tracks.items[0].preview_url);
         }
-
-        console.log(data);
     });
-}
+};
+//     spotify.search({
+//         type: "track",
+//         query: "All the Small Things"
+//     }, function (err, data) {
+//         if (err) {
+//             return console.log("Error occurred: " + err);
+//         }
+
+//         console.log(data);
+//     });
+// }
 
 function whatItSays() {}
 //OMDB movies---------------------------------------------------------
