@@ -7,6 +7,7 @@ var Twitter = require("twitter");
 //access the keys from these
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
+//use fs to read random.txt file
 var fs = require("fs");
 
 var action = process.argv[2];
@@ -89,20 +90,19 @@ function whatItSays() {
     
 fs.readFile("random.txt", "utf8", function (error, data) {
 
-    // If the code experiences any errors it will log the error to the console.
+    
     if (error) {
         return console.log(error);
     }
-
-    // We will then print the contents of data
-    console.log(data);
-    userInput = data
+        console.log(data);
+    //run music function? reassign searchTrack to data once it is split?
+    //need to reassign action variable so that it isn't user input but it is reading the file
     //reassign variable of action so that it reads to random.txt then call the
     // Then split it by commas (to make it more readable)
-    var dataArr = data.split(");
+    // var dataArr = data.split(");
 
   // We will then re-display the content as an array for later use.
-  console.log(dataArr);
+//   console.log(dataArr);
     //now i need to get it to run node liri.js spotify-this-song dataArr
     //how to do this
 });
@@ -132,8 +132,8 @@ function movie() {
             console.log("The movie's imdb rating is: " + JSON.parse(body).imdbRating);
             // console.log(JSON.parse(body));//this one gives you all of the object so you can more easily find the part you want
         } else {
-            if (movieName === undefined) {
-                movieName = "Mr.Nobody"
+            if (userInput === undefined) {
+                userInput = "Mr.Nobody"
                 console.log("The movie's title is: " + JSON.parse(body).Title);
                 console.log("The movie was released in: " + JSON.parse(body).Year);
                 console.log("The movie's language is: " + JSON.parse(body).Language);
