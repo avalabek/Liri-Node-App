@@ -65,7 +65,7 @@ function music() {
             console.log('Error occurred: ' + err);
             return;
         } else {
-            //tried searching for release year! Spotify doesn't return this!
+            
             console.log("Artist: " + data.tracks.items[0].artists[0].name);
             console.log("Song: " + data.tracks.items[0].name);
             console.log("Album: " + data.tracks.items[0].album.name);
