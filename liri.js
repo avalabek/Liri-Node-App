@@ -121,7 +121,19 @@ function movie() {
 
     request(queryUrl, function (error, response, body) {
 
-        if (!error && response.statusCode === 200) {
+        //make an if statement to check if userInput is undefined. do this first then go to next section
+        if (userInput === undefined){
+            userInput = "Mr.Nobody"
+            console.log("The movie's title is: " + JSON.parse(body).Title);
+            console.log("The movie was released in: " + JSON.parse(body).Year);
+            console.log("The movie's language is: " + JSON.parse(body).Language);
+            console.log("The movie stars: " + JSON.parse(body).Actors);
+            console.log("The movie was produced in: " + JSON.parse(body).Country);
+            console.log("This is the movie's plot: " + JSON.parse(body).Plot);
+            console.log("The movie's Rotten Tomatoes score is: " + JSON.parse(body).Metascore);
+            console.log("The movie's imdb rating is: " + JSON.parse(body).imdbRating);
+        }
+        else if (!error && response.statusCode === 200) {
             console.log("The movie's title is: " + JSON.parse(body).Title);
             console.log("The movie was released in: " + JSON.parse(body).Year);
             console.log("The movie's language is: " + JSON.parse(body).Language);
@@ -131,20 +143,21 @@ function movie() {
             console.log("The movie's Rotten Tomatoes score is: " + JSON.parse(body).Metascore);
             console.log("The movie's imdb rating is: " + JSON.parse(body).imdbRating);
             // console.log(JSON.parse(body));//this one gives you all of the object so you can more easily find the part you want
-        } else {
-            if (userInput === undefined) {
-                userInput = "Mr.Nobody"
-                console.log("The movie's title is: " + JSON.parse(body).Title);
-                console.log("The movie was released in: " + JSON.parse(body).Year);
-                console.log("The movie's language is: " + JSON.parse(body).Language);
-                console.log("The movie stars: " + JSON.parse(body).Actors);
-                console.log("The movie was produced in: " + JSON.parse(body).Country);
-                console.log("This is the movie's plot: " + JSON.parse(body).Plot);
-                console.log("The movie's Rotten Tomatoes score is: " + JSON.parse(body).Metascore);
-                console.log("The movie's imdb rating is: " + JSON.parse(body).imdbRating);
+        } 
+        // else {
+        //     if (userInput === undefined) {
+        //         userInput = "Mr.Nobody"
+        //         console.log("The movie's title is: " + JSON.parse(body).Title);
+        //         console.log("The movie was released in: " + JSON.parse(body).Year);
+        //         console.log("The movie's language is: " + JSON.parse(body).Language);
+        //         console.log("The movie stars: " + JSON.parse(body).Actors);
+        //         console.log("The movie was produced in: " + JSON.parse(body).Country);
+        //         console.log("This is the movie's plot: " + JSON.parse(body).Plot);
+        //         console.log("The movie's Rotten Tomatoes score is: " + JSON.parse(body).Metascore);
+        //         console.log("The movie's imdb rating is: " + JSON.parse(body).imdbRating);
 
-            }
-        }
+        //     }
+        // }
     });
-}
+ }
 startLiri();
