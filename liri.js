@@ -59,32 +59,22 @@ function tweets() {
 
 
 function music() {
- var searchTrack = userInput;
-    spotify.search({ type: 'track', query: searchTrack }, function (err, data) {
+    if(userInput === undefined){
+        userInput = "Ace of Base";
+    }
+
+    spotify.search({ type: 'track', query: userInput }, function (err, data) {
         if (err) {
-            console.log('Error occurred: ' + err);
+            console.log("An error has occurred: " + err);
             return;
         } else {
-            //tried searching for release year! Spotify doesn't return this!
-            console.log("Artist: " + data.tracks.items[0].artists[0].name);
+            console.log("Artist(s): " + data.tracks.items[0].artists[0].name);
             console.log("Song: " + data.tracks.items[0].name);
             console.log("Album: " + data.tracks.items[0].album.name);
-            console.log("Preview Here: " + data.tracks.items[0].preview_url);
+            console.log("Preview it here: " + data.tracks.items[0].preview_url);
         }
     });
 };
-//     spotify.search({
-//         type: "track",
-//         query: "All the Small Things"
-//     }, function (err, data) {
-//         if (err) {
-//             return console.log("Error occurred: " + err);
-//         }
-
-//         console.log(data);
-//     });
-// }
-
 function whatItSays() {}
 //OMDB movies---------------------------------------------------------
 
@@ -96,6 +86,10 @@ function movie() {
     var queryUrl = "http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=trilogy";
     console.log(queryUrl);
     var request = require("request");
+    //the below is pulling up a movie called "undefined"
+    // if (userInput === undefined) {
+    //     userInput = "Mr.Nobody";
+    // }
 
     request(queryUrl, function (error, response, body) {
 
@@ -110,8 +104,10 @@ function movie() {
             console.log("The movie's imdb rating is: " + JSON.parse(body).imdbRating);
             // console.log(JSON.parse(body));//this one gives you all of the object so you can more easily find the part you want
         } else {
-            if (movieName === undefined) {
-                movieName = "Mr.Nobody"
+            console.log("we are here");
+            //so it isn't showing an error and doesn't get here 
+            if (userInput===undefined){
+            userInput = "Mr.Nobody" 
                 console.log("The movie's title is: " + JSON.parse(body).Title);
                 console.log("The movie was released in: " + JSON.parse(body).Year);
                 console.log("The movie's language is: " + JSON.parse(body).Language);
@@ -122,7 +118,7 @@ function movie() {
                 console.log("The movie's imdb rating is: " + JSON.parse(body).imdbRating);
 
             }
-        }
-    });
-}
+        }//end request function
+    });//end movie function
+
 startLiri();
