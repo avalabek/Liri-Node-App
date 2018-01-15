@@ -84,7 +84,8 @@ fs.readFile("random.txt", "utf8", function (error, data) {
         return console.log(error);
     }
         console.log(data);
-    //run music function? reassign searchTrack to data once it is split?
+        music();
+    //run music function? or startliri?reassign searchTrack to data once it is split?
     //need to reassign action variable so that it isn't user input but it is reading the file
     //reassign variable of action so that it reads to random.txt then call the
     // Then split it by commas (to make it more readable)
