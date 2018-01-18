@@ -90,6 +90,7 @@ fs.readFile("random.txt", "utf8", function (error, data) {
     action = randomText[0];
     userInput = randomText[1];
         
+    
         startLiri();
     }
         
