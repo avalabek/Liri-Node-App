@@ -78,25 +78,34 @@ function music() {
 function whatItSays() {
     
 fs.readFile("random.txt", "utf8", function (error, data) {
-
-    
+ 
     if (error) {
-        return console.log(error);
+        console.log(error);
+    }else{
+    var randomText = data.split(",");
+    action = randomText[0];
+    userInput = randomText[1];
+        
+        startLiri();
     }
-        console.log(data);
-        music();
+        
+    });
+}
+
+        //console.log(data);
+        
     //run music function? orreassign searchTrack to data once it is split?
     //need to reassign action variable so that it isn't user input but it is reading the file
     //reassign variable of action so that it reads to random.txt then call the
     // Then split it by commas (to make it more readable)
-    // var dataArr = data.split(");
+    
 
   // We will then re-display the content as an array for later use.
 //   console.log(dataArr);
     //now i need to get it to run node liri.js spotify-this-song dataArr
     //how to do this
-});
-}
+// });
+
 
 
 
