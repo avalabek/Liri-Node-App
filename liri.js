@@ -62,9 +62,9 @@ function tweets() {
 function music() {
  
  if (userInput === undefined) {
-     userInput = "Ace of Base";
+     userInput = "Ace of Base";}
      var searchTrack = userInput;
- }
+ 
     spotify.search({ type: "track", query: searchTrack }, function (err, data) {
         if (err) {
             console.log("An error has occurred: " + err);
