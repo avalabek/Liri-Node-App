@@ -60,10 +60,14 @@ function tweets() {
 
 
 function music() {
- var searchTrack = userInput;
-    spotify.search({ type: 'track', query: searchTrack }, function (err, data) {
+ 
+ if (userInput === undefined) {
+     userInput = "Ace of Base";
+     var searchTrack = userInput;
+ }
+    spotify.search({ type: "track", query: searchTrack }, function (err, data) {
         if (err) {
-            console.log('Error occurred: ' + err);
+            console.log("An error has occurred: " + err);
             return;
         } else {
             
@@ -95,20 +99,12 @@ fs.readFile("random.txt", "utf8", function (error, data) {
         //console.log(data);
         
     //run music function? orreassign searchTrack to data once it is split?
-    //need to reassign action variable so that it isn't user input but it is reading the file
+    //need to reassign action variable so that it isn't user input but it is reading the first part file
     //reassign variable of action so that it reads to random.txt then call the
-    // Then split it by commas (to make it more readable)
+    // reassign the userInput to second part 
+    // Then split it by commas 
+       
     
-
-  // We will then re-display the content as an array for later use.
-//   console.log(dataArr);
-    //now i need to get it to run node liri.js spotify-this-song dataArr
-    //how to do this
-// });
-
-
-
-
 function movie() {
     if (userInput === undefined) {
         userInput = "Mr.Nobody";
